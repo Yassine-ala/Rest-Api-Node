@@ -8,14 +8,17 @@ module.exports = (sequelize, DataTypes) => {
     birthDate: DataTypes.DATE,
     country: DataTypes.STRING,
     address: DataTypes.STRING
-  }, {});
-  Profile.associate = function(models) {
-    // associations can be defined here
-      models.Profile.belongsTo(models.User, {
-          foreignKey: {
-              allowNull: false
-          }
-      });
-  };
-  return Profile;
+  }, {
+        classMethods: {
+            associate: function (models) {
+                // associations can be defined here
+                models.Profile.belongsTo(models.User, {
+                    foreignKey: {
+                        allowNull: false
+                    }
+                });
+            }
+        }
+    });
+    return Profile;
 };
